@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OpenVoctra</string>
+    <string name="vocloading">Loading...</string>
+    <string name="right">right</string>
+    <string name="wrong">wrong</string>
+    <string name="fivenewlines">\n\n\n\n\n</string>
+    <string name="twonewlines">\n\n</string>
+</resources>
