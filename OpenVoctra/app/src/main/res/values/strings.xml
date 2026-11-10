@@ -5,4 +5,9 @@
     <string name="wrong">wrong</string>
     <string name="fivenewlines">\n\n\n\n\n</string>
     <string name="twonewlines">\n\n</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="startedit">Edit Voc-cards</string>
+    <string name="starttraining">Start training</string>
+    <string name="exit">exit</string>
 </resources>
