@@ -6,6 +6,9 @@
 
 android {
     namespace = "com.example.openvoctra"
+    buildFeatures {
+        viewBinding = true
+    }
     compileSdk {
         version = release(37)
     }

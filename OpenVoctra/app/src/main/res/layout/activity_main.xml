@@ -58,21 +58,14 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/voctitleedit"
-                    android:text="@string/vocloading"/>
-
-                <TextView
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/fivenewlines"/>
 
-                <TextView
+                <EditText
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:id="@+id/vocedit"
+                    android:id="@+id/vocname"
                     android:text="@string/vocloading"/>
 
                 <TextView
