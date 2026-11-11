@@ -7,7 +7,9 @@
     <string name="twonewlines">\n\n</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="startedit">Edit Voc-cards</string>
+    <string name="startadd">Add Voc-cards</string>
     <string name="starttraining">Start training</string>
     <string name="exit">exit</string>
+    <string name="startedit">Edit existing voc-cards</string>
+    <string name="delete">Delete</string>
 </resources>
