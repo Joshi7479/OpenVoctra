@@ -9,6 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import android.widget.Toast
+import kotlin.random.Random
+import android.util.Log
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.singleOrNull
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dao = AppDatabase.get(this).entryDao()
+        val voc = findViewById<TextView>(R.id.voc)
+        val voctranslation = findViewById<TextView>(R.id.voctranslation)
         val voctitle = findViewById<TextView>(R.id.voctitle)
         val maincard = findViewById<LinearLayout>(R.id.maincard)
         val mainedit = findViewById<LinearLayout>(R.id.mainedit)
@@ -31,10 +38,14 @@ class MainActivity : AppCompatActivity() {
         savebutton.setOnClickListener {
             val name = titleInput.text.toString().trim()
             val translation = vocInput.text.toString().trim()
-            if (name.isEmpty() || translation.isEmpty()) return@setOnClickListener
 
+            if (name.isEmpty() || translation.isEmpty()) {
+                Toast.makeText(this, "Bitte beide Felder ausfüllen", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             lifecycleScope.launch {
-                dao.insert(Entry(title = name, content = translation))
+                val id = dao.insertNext(name, translation)
+                Toast.makeText(this@MainActivity, "Gespeichert (#$id)", Toast.LENGTH_SHORT).show()
                 titleInput.text.clear()
                 vocInput.text.clear()
             }
@@ -55,8 +66,16 @@ class MainActivity : AppCompatActivity() {
             maincard.visibility = View.VISIBLE
 
             lifecycleScope.launch {
-                val list = dao.getAllOnce()
-                voctitle.text = list.firstOrNull()?.title ?: "Nothing saved yet."
+                val voccount = dao.getCount()
+                if(voccount==0) {
+                    voc.text = "Nothing saved yet!"
+                    voctranslation.text = ""
+                    return@launch
+                }
+                val randomint = Random.nextInt(1, voccount + 1)
+                val entry = dao.getById(randomint.toLong())
+                voc.text = entry?.title
+                voctranslation.text = entry?.content
             }
         }
 

@@ -65,8 +65,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:id="@+id/vocname"
-                    android:text="@string/vocloading"/>
+                    android:id="@+id/vocname" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -77,8 +76,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:id="@+id/voctranslationedit"
-                    android:text="@string/vocloading"/>
+                    android:id="@+id/voctranslationedit"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -94,13 +92,13 @@
                     <Button
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/save"
-                        android:text="@string/right"/>
+                        android:id="@+id/cancel"
+                        android:text="@string/cancel"/>
 
                     <Button
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/cancel"
+                        android:id="@+id/save"
                         android:text="@string/save"/>
 
                 </LinearLayout>
@@ -134,7 +132,7 @@
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:id="@+id/voctitle"
-                    android:text="@string/vocloading"/>
+                    android:text="@string/app_name"/>
 
                 <TextView
                     android:layout_width="match_parent"
