@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OpenVoctra</string>
+    <string name="vocloading">Loading...</string>
+    <string name="right">Right</string>
+    <string name="wrong">Wrong</string>
+    <string name="fivenewlines">\n\n\n\n\n</string>
+    <string name="twonewlines">\n\n</string>
+    <string name="save">Save</string>
+    <string name="startadd">Add vocabulary-cards</string>
+    <string name="starttraining">Start training</string>
+    <string name="startedit">Edit existing vocabulary-cards</string>
+    <string name="delete">Delete</string>
+    <string name="next">→</string>
+    <string name="last">←</string>
+    <string name="opentranslation">Show translation</string>
+    <string name="settingsunicode">⚙</string>
+    <string name="done">Done</string>
+</resources>
