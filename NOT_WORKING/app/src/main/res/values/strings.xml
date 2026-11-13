@@ -6,6 +6,7 @@
     <string name="fivenewlines">\n\n\n\n\n</string>
     <string name="twonewlines">\n\n</string>
     <string name="save">Save</string>
+    <string name="saved">Saved</string>
     <string name="startadd">Add vocabulary-cards</string>
     <string name="starttraining">Start training</string>
     <string name="startedit">Edit existing vocabulary-cards</string>
@@ -18,5 +19,6 @@
     <string name="ownlanguage">A word in you`re first language</string>
     <string name="learnlanguage">The translation (e.g. in German).</string>
     <string name="lernsettingsownl">Which language do you speak?</string>
-    <string name="lernsettingslearnl">The Language you wan´t to learn</string>
+    <string name="lernsettingslearnl">Choose the language you wan´t to learn</string>
+    <string name="bothfields">Please fill out both fields!</string>
 </resources>

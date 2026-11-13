@@ -6,6 +6,7 @@
     <string name="fivenewlines">\n\n\n\n\n</string>
     <string name="twonewlines">\n\n</string>
     <string name="save">Speichern</string>
+    <string name="saved">Gespeichert</string>
     <string name="startadd">Füge Vokabelkarten hinzu</string>
     <string name="starttraining">Starte das Training</string>
     <string name="startedit">Vokabelkarten bearbeiten</string>
@@ -18,5 +19,6 @@
     <string name="ownlanguage">Ein Wort auf deiner Sprache.</string>
     <string name="learnlanguage">Die Übersetzung. (Z.B. Auf Englisch)</string>
     <string name="lernsettingsownl">Deine eigene Sprache</string>
-    <string name="lernsettingslearnl">Die Sprache die du lernen willst.</string>
+    <string name="lernsettingslearnl">Wähle die Sprache, die du lernen willst, aus.</string>
+    <string name="bothfields">Bitte beide Felder ausfüllen!!</string>
 </resources>

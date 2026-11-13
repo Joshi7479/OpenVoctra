@@ -232,8 +232,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/mainedit"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -351,17 +350,22 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <EditText
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lernsettingsownl"
-            android:hint="@string/lernsettingsownl"/>
+            android:text="@string/lernsettingslearnl"
+            android:id="@+id/startlanguagepicker"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lernsettingslearnl"
-            android:hint="@string/lernsettingslearnl"/>
+            android:text="@string/twonewlines"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settingsdone"
+            android:text="@string/done"/>
 
     </LinearLayout>
 
