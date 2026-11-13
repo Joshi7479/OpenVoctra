@@ -1,7 +1,6 @@
 package com.example.openvoctra
 
 import android.os.Bundle
-import android.content.Context
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -11,43 +10,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import android.widget.Toast
-import kotlin.random.Random
-import android.util.Log
 import android.view.inputmethod.EditorInfo
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.singleOrNull
-import kotlin.random.nextInt
-import android.Manifest
-import android.content.pm.PackageManager
-import android.media.MediaPlayer
-import android.media.MediaRecorder
-import android.os.Build
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
-import java.io.File
-import java.io.IOException
+import com.example.openvoctra.TextToSpeechManager
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var ttsManager: TextToSpeechManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPref = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
-        val isFirstRun = sharedPref.getBoolean("is_first_run", true)
+        ttsManager = TextToSpeechManager(this)
 
-        if(isFirstRun) {
-            private val requestetmicpermission = registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) {isGranted: Boolean ->
-                if(isGranted) {
-                    Toast.makeText(this, "Thank you.", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Okay.", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        var currentvoceditcontent: String = ""
+        var currentvoceditname: String = ""
 
         val dao = AppDatabase.get(this).entryDao()
         val voc = findViewById<TextView>(R.id.voc)
@@ -75,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         val vocnumberedit = findViewById<EditText>(R.id.voceditnumber)
         val deletbutton = findViewById<Button>(R.id.delete)
         val showtranslation = findViewById<Button>(R.id.showtranslation)
+        val playbutton = findViewById<Button>(R.id.play)
+        val chooseownlanguage = findViewById<EditText>(R.id.lernsettingsownl)
+        val chooselearnlanguage = findViewById<EditText>(R.id.lernsettingslearnl)
+        
         var vocnumber = 1
 
         val usedrandom = mutableSetOf<Int>()
@@ -121,8 +103,10 @@ class MainActivity : AppCompatActivity() {
                 vocnumberedit.setText(vocnumber.toString())
                 val currentvocedit = dao.getById(vocnumber.toLong())
                 if(currentvocedit != null) {
-                    voctranslationedit.setText(currentvocedit?.content)
-                    vocnameedit.setText(currentvocedit?.title)
+                    currentvoceditcontent = currentvocedit.content
+                    voctranslationedit.setText(currentvoceditcontent)
+                    currentvoceditname = currentvocedit.title
+                    vocnameedit.setText(currentvoceditname)
                 } else {
                     vocnameedit.setText("Nothing saved yet!")
                     voctranslationedit.setText("")
@@ -134,6 +118,12 @@ class MainActivity : AppCompatActivity() {
                     newvocedit()
                 }
             }
+
+        }
+
+        playbutton.setOnClickListener {
+            ttsManager.setlanguage(Locale.getDefault())
+            ttsManager.speak(currentvoceditname)
 
         }
 

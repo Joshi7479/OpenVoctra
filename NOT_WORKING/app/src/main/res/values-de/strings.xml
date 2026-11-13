@@ -15,4 +15,8 @@
     <string name="opentranslation">Übersetzung anzeigen</string>
     <string name="settingsunicode">⚙</string>
     <string name="done">Fertig!</string>
+    <string name="ownlanguage">Ein Wort auf deiner Sprache.</string>
+    <string name="learnlanguage">Die Übersetzung. (Z.B. Auf Englisch)</string>
+    <string name="lernsettingsownl">Deine eigene Sprache</string>
+    <string name="lernsettingslearnl">Die Sprache die du lernen willst.</string>
 </resources>

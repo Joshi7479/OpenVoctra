@@ -15,4 +15,8 @@
     <string name="opentranslation">Show translation</string>
     <string name="settingsunicode">⚙</string>
     <string name="done">Done</string>
+    <string name="ownlanguage">A word in you`re first language</string>
+    <string name="learnlanguage">The translation (e.g. in German).</string>
+    <string name="lernsettingsownl">Which language do you speak?</string>
+    <string name="lernsettingslearnl">The Language you wan´t to learn</string>
 </resources>

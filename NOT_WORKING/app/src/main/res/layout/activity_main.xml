@@ -83,19 +83,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/record"
-                    android:text="🎤"/>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/play"
-                    android:text="▶︎"/>
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -261,6 +248,12 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/play"
+                    android:text="▶︎"/>
+
                 <EditText
                     android:id="@+id/voceditnumber"
                     android:backgroundTint="#FFFFFF"
@@ -271,6 +264,7 @@
                     android:inputType="number"
                     android:layout_gravity="end"
                     android:singleLine="true"
+                    android:hint=""
                     android:textColor="@android:color/white"
                     android:textColorHint="#FFFFFF" />
 
@@ -348,6 +342,27 @@
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingslayout"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lernsettingsownl"
+            android:hint="@string/lernsettingsownl"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lernsettingslearnl"
+            android:hint="@string/lernsettingslearnl"/>
+
     </LinearLayout>
 
 
