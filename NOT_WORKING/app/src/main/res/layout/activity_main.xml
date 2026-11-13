@@ -50,6 +50,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/twonewlines"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/voclist"
+            android:layout_height="wrap_content"
+            android:text="@string/voclist"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/fivenewlines"/>
 
         <Button
@@ -347,6 +358,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/settingslayout"
+        android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -358,6 +370,14 @@
 
         <TextView
             android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/currentlanguage"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentlanguage"/>
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/twonewlines"/>
 
@@ -366,6 +386,42 @@
             android:layout_height="wrap_content"
             android:id="@+id/settingsdone"
             android:text="@string/done"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:id="@+id/voclistlayout"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|top"
+                android:text="@string/done"
+                android:id="@+id/leavevoclist"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end|top"
+                android:text="@string/starttraining"
+                android:id="@+id/starttrainingfromvoclist"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/voclistrecyclerview"/>
 
     </LinearLayout>
 

@@ -8,14 +8,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
 import kotlinx.coroutines.launch
 import android.widget.Toast
 import android.view.inputmethod.EditorInfo
 import android.content.Context
-import com.example.openvoctra.TextToSpeechManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Locale
+import androidx.lifecycle.repeatOnLifecycle
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val recyclerView = findViewById<RecyclerView>(R.id.voclistrecyclerview)
+        val adapter = ObjektAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         ttsManager = TextToSpeechManager(this)
 
@@ -64,12 +69,25 @@ class MainActivity : AppCompatActivity() {
         val settingslayout = findViewById<LinearLayout>(R.id.settingslayout)
         val settingsbutton = findViewById<Button>(R.id.settings)
         val startlanguagepickerbutton = findViewById<Button>(R.id.startlanguagepicker)
+        val currentlanguagedisplay = findViewById<TextView>(R.id.currentlanguage)
+        val voclistbutton = findViewById<Button>(R.id.voclist)
+        val voclistlayout = findViewById<LinearLayout>(R.id.voclistlayout)
+        val starttrainingfromvoclist = findViewById<Button>(R.id.starttrainingfromvoclist)
+        val voclistdone = findViewById<Button>(R.id.leavevoclist)
 
         var vocnumber = 1
 
         val usedrandom = mutableSetOf<Int>()
         var currentId = 0
         var lastvoc = 0
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                dao.observeAll().collect { liste ->
+                    adapter.submitList(liste)
+                }
+            }
+        }
 
         fun newvoc(right: Int) {
             voctranslation.visibility = View.GONE
@@ -166,6 +184,23 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
         }
 
+        voclistdone.setOnClickListener {
+            voclistlayout.visibility = View.GONE
+            startscreen.visibility = View.VISIBLE
+        }
+
+        starttrainingfromvoclist.setOnClickListener {
+            usedrandom.clear()
+            voclistlayout.visibility = View.GONE
+            maincard.visibility = View.VISIBLE
+            newvoc(0)
+        }
+
+        voclistbutton.setOnClickListener {
+            startscreen.visibility = View.GONE
+            voclistlayout.visibility = View.VISIBLE
+        }
+
         startlanguagepickerbutton.setOnClickListener {
             showLanguagePickerDialog { selectedLocale ->
                 writer.putString("learnlanguage", selectedLocale.language).apply()
@@ -173,8 +208,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         settingsbutton.setOnClickListener {
+            val language = preferences.getString("learnlanguage", "en") ?: "en"
             startscreen.visibility = View.GONE
             settingslayout.visibility = View.VISIBLE
+            currentlanguagedisplay.setText(getString(R.string.currentlanguage) + language)
         }
 
         setttingsdone.setOnClickListener {

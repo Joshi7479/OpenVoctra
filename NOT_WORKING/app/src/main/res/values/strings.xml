@@ -21,4 +21,7 @@
     <string name="lernsettingsownl">Which language do you speak?</string>
     <string name="lernsettingslearnl">Choose the language you wan´t to learn</string>
     <string name="bothfields">Please fill out both fields!</string>
+    <string name="currentlanguage">The currently selected language code is:</string>
+    <string name="nothingsaved">Nothing saved yet!</string>
+    <string name="voclist">vocabulary-item-list</string>
 </resources>
