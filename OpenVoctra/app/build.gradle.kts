@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation("com.google.android.material:material:1.14.0")
+    implementation("androidx.preference:preference-ktx:1.2.1")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

@@ -1,18 +1,31 @@
 <resources>
     <string name="app_name">OpenVoctra</string>
     <string name="vocloading">Loading...</string>
-    <string name="right">right</string>
-    <string name="wrong">wrong</string>
+    <string name="right">Right</string>
+    <string name="wrong">Wrong</string>
     <string name="fivenewlines">\n\n\n\n\n</string>
     <string name="twonewlines">\n\n</string>
-    <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="startadd">Add Voc-cards</string>
+    <string name="saved">Saved</string>
+    <string name="startadd">Add vocabulary-cards</string>
     <string name="starttraining">Start training</string>
-    <string name="exit">exit</string>
-    <string name="startedit">Edit existing voc-cards</string>
+    <string name="startedit">Edit existing vocabulary-cards</string>
     <string name="delete">Delete</string>
     <string name="next">→</string>
     <string name="last">←</string>
     <string name="opentranslation">Show translation</string>
+    <string name="settingsunicode">⚙</string>
+    <string name="done">Done</string>
+    <string name="ownlanguage">A word in you`re first language</string>
+    <string name="learnlanguage">The translation (e.g. in German).</string>
+    <string name="lernsettingsownl">Which language do you speak?</string>
+    <string name="lernsettingslearnl">Choose the language you wan´t to learn</string>
+    <string name="bothfields">Please fill out both fields!</string>
+    <string name="currentlanguage">The currently selected language code is:</string>
+    <string name="nothingsaved">Nothing saved yet!</string>
+    <string name="voclist">vocabulary-item-list</string>
+    <string name="cancel">Cancel</string>
+    <string name="chooselanguage">Choose the language</string>
+    <string name="voclisthint">This is the voclist, where you can learn all saved vocabulary-items.\n(Tap to open in editor, hold to delete)</string>
+    <string name="playbutton">▶︎</string>
 </resources>

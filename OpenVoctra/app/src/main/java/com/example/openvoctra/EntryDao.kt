@@ -39,6 +39,9 @@ abstract class EntryDao {
     @Query("SELECT COUNT(*) FROM entries")
     abstract suspend fun getCount(): Int
 
+    @Query("SELECT * FROM entries ORDER BY id ASC")
+    abstract fun observeAll(): Flow<List<Entry>>
+
     @Transaction
     open suspend fun deleteAndCompact(id: Long) {
         deleteById(id)
