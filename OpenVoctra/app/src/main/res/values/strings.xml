@@ -21,11 +21,12 @@
     <string name="lernsettingsownl">Which language do you speak?</string>
     <string name="lernsettingslearnl">Choose the language you wan´t to learn</string>
     <string name="bothfields">Please fill out both fields!</string>
-    <string name="currentlanguage">The currently selected language code is:</string>
+    <string name="currentlanguage">The currently selected language code is: </string>
     <string name="nothingsaved">Nothing saved yet!</string>
     <string name="voclist">vocabulary-item-list</string>
     <string name="cancel">Cancel</string>
     <string name="chooselanguage">Choose the language</string>
     <string name="voclisthint">This is the voclist, where you can learn all saved vocabulary-items.\n(Tap to open in editor, hold to delete)</string>
     <string name="playbutton">▶︎</string>
+    <string name="test">Testbutton</string>
 </resources>

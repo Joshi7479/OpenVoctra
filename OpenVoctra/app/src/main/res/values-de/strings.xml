@@ -21,11 +21,12 @@
     <string name="lernsettingsownl">Deine eigene Sprache</string>
     <string name="lernsettingslearnl">Wähle die Sprache, die du lernen willst, aus.</string>
     <string name="bothfields">Bitte beide Felder ausfüllen!!</string>
-    <string name="currentlanguage">Der aktuell ausgewählte Sprachcode ist:</string>
+    <string name="currentlanguage">Der aktuell ausgewählte Sprachcode ist: </string>
     <string name="nothingsaved">Nichts gespeichert…</string>
     <string name="voclist">Vokabelliste</string>
     <string name="chooselanguage">Sprache auswählen</string>#
     <string name="cancel">Abbruch</string>
     <string name="voclisthint">Hier ist die Vokabelliste, wo du alle Vokabeln lernen kannst.\n(Anklicken um im Editor zu öffnen, halten zum Löschen.)</string>
     <string name="playbutton">▶︎</string>
+    <string name="test">Testbutton</string>
 </resources>

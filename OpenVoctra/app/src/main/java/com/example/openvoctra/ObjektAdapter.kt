@@ -11,15 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.Locale
 import android.content.Context
 import android.os.Handler
+import android.content.Intent
+import kotlinx.coroutines.launch
 import android.os.Looper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class ObjektAdapter(
-    private val ttsManager: TextToSpeechManager
+    private val ttsManager: TextToSpeechManager,
+    private val onItemClick: (newtodo: String, todoobject: Int) -> Unit
 ) : ListAdapter<Entry, ObjektAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.itemTextView)
         val playButton: Button = view.findViewById(R.id.item_play)
+        val dao = AppDatabase.get(view.context).entryDao()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +41,7 @@ class ObjektAdapter(
 
         holder.playButton.setOnClickListener { view ->
             val context = view.context
-            val preferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            val preferences = context.getSharedPreferences("learnlanguage", Context.MODE_PRIVATE)
             val language = preferences.getString("learnlanguage", "en") ?: "en"
 
             ttsManager.setlanguage(Locale.getDefault())
@@ -46,6 +52,20 @@ class ObjektAdapter(
                 }
             }
         }
+        holder.textView.setOnClickListener {
+            val newtodo = "openeditor"
+            val newtodoobject = currentobjekt.id
+
+            onItemClick(newtodo, newtodoobject.toInt())
+
+        }
+        holder.textView.setOnLongClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                holder.dao.deleteAndCompact(currentobjekt.id)
+            }
+            true
+        }
+
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Entry>() {

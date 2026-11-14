@@ -1,22 +1,22 @@
 package com.example.openvoctra
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.Lifecycle
-import kotlinx.coroutines.launch
 import android.widget.Toast
-import android.view.inputmethod.EditorInfo
-import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import java.util.Locale
-import androidx.lifecycle.repeatOnLifecycle
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,22 +25,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView = findViewById<RecyclerView>(R.id.voclistrecyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        ttsManager = TextToSpeechManager(this)
-        val adapter = ObjektAdapter(ttsManager)
-
-        recyclerView.adapter = adapter
-
-        var currentvoceditcontent: String = ""
-        var currentvoceditname: String = ""
-        var isfirstvoclistrun: Boolean = true
+        var currentvoceditcontent = ""
+        var currentvoceditname = ""
+        var isfirstvoclistrun = true
 
         val preferences = getSharedPreferences("learnlanguage", Context.MODE_PRIVATE)
         val writer = preferences.edit()
-
         val dao = AppDatabase.get(this).entryDao()
+        ttsManager = TextToSpeechManager(this)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.voclistrecyclerview)
         val voc = findViewById<TextView>(R.id.voc)
         val voctranslation = findViewById<TextView>(R.id.voctranslation)
         val rightbutton = findViewById<Button>(R.id.right)
@@ -76,23 +71,14 @@ class MainActivity : AppCompatActivity() {
         val voclistlayout = findViewById<LinearLayout>(R.id.voclistlayout)
         val starttrainingfromvoclist = findViewById<Button>(R.id.starttrainingfromvoclist)
         val voclistdone = findViewById<Button>(R.id.leavevoclist)
-        val voclisthint = findViewById<TextView>(R.id.voclisthint)
-
-        writer.putBoolean("isfirstvoclistrun", isfirstvoclistrun)
 
         var vocnumber = 1
-
         val usedrandom = mutableSetOf<Int>()
         var currentId = 0
         var lastvoc = 0
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                dao.observeAll().collect { liste ->
-                    adapter.submitList(liste)
-                }
-            }
-        }
+        startscreen.visibility = View.VISIBLE
+        writer.putBoolean("isfirstvoclistrun", isfirstvoclistrun).apply()
 
         fun newvoc(right: Int) {
             voctranslation.visibility = View.GONE
@@ -170,23 +156,45 @@ class MainActivity : AppCompatActivity() {
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()
 
-            val adapter = LanguageAdapter(getAllLanguages()) { selectedLocale ->
+            val languageAdapter = LanguageAdapter(getAllLanguages()) { selectedLocale ->
                 dialog.dismiss()
                 onResult(selectedLocale)
             }
 
             rvLanguages.layoutManager = LinearLayoutManager(this)
-            rvLanguages.adapter = adapter
+            rvLanguages.adapter = languageAdapter
 
             etSearch.addTextChangedListener(object : android.text.TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    adapter.filter(s.toString())
+                    languageAdapter.filter(s.toString())
                 }
                 override fun afterTextChanged(s: android.text.Editable?) {}
             })
 
             dialog.show()
+        }
+
+        val adapter = ObjektAdapter(ttsManager) { _, entryId ->
+            vocnumber = entryId
+            voclistlayout.visibility = View.GONE
+            mainedit.visibility = View.VISIBLE
+            newvocedit()
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                dao.observeAll().collect { liste ->
+                    adapter.submitList(liste)
+                }
+            }
+        }
+
+        voclistbutton.setOnClickListener {
+            startscreen.visibility = View.GONE
+            voclistlayout.visibility = View.VISIBLE
         }
 
         voclistdone.setOnClickListener {
@@ -201,19 +209,6 @@ class MainActivity : AppCompatActivity() {
             newvoc(0)
         }
 
-        voclistbutton.setOnClickListener {
-            if(isfirstvoclistrun) {
-                voclisthint.setText(R.string.voclisthint)
-            } else {
-                voclisthint.setText("")
-            }
-
-            startscreen.visibility = View.GONE
-            voclistlayout.visibility = View.VISIBLE
-            isfirstvoclistrun = false
-            writer.putBoolean("isfirstvoclistrun", isfirstvoclistrun)
-        }
-
         startlanguagepickerbutton.setOnClickListener {
             showLanguagePickerDialog { selectedLocale ->
                 writer.putString("learnlanguage", selectedLocale.language).apply()
@@ -224,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             val language = preferences.getString("learnlanguage", "en") ?: "en"
             startscreen.visibility = View.GONE
             settingslayout.visibility = View.VISIBLE
-            currentlanguagedisplay.setText(getString(R.string.currentlanguage) + language)
+            currentlanguagedisplay.text = getString(R.string.currentlanguage) + language
         }
 
         setttingsdone.setOnClickListener {
@@ -234,7 +229,6 @@ class MainActivity : AppCompatActivity() {
 
         playbutton.setOnClickListener {
             val language = preferences.getString("learnlanguage", "en") ?: "en"
-
             ttsManager.setlanguage(Locale.getDefault())
             ttsManager.speak(currentvoceditname) {
                 runOnUiThread {
@@ -252,8 +246,8 @@ class MainActivity : AppCompatActivity() {
         deletbutton.setOnClickListener {
             lifecycleScope.launch {
                 dao.deleteAndCompact(vocnumber.toLong())
+                newvocedit()
             }
-            newvocedit()
         }
 
         starteditbutton.setOnClickListener {
@@ -262,7 +256,7 @@ class MainActivity : AppCompatActivity() {
             newvocedit()
         }
 
-        vocnumberedit.setOnEditorActionListener { v, actionid, event ->
+        vocnumberedit.setOnEditorActionListener { _, actionid, _ ->
             if (actionid == EditorInfo.IME_ACTION_GO) {
                 vocnumber = vocnumberedit.text.toString().toIntOrNull() ?: vocnumber
                 newvocedit()
@@ -284,11 +278,9 @@ class MainActivity : AppCompatActivity() {
                 dao.deleteAndCompact(vocnumber.toLong())
                 val id = dao.insertNext(name, translation)
                 Toast.makeText(this@MainActivity, getString(R.string.saved) + "(#$id)", Toast.LENGTH_SHORT).show()
-                titleInput.text.clear()
-                vocInput.text.clear()
+                vocnumber += 1
+                newvocedit()
             }
-            vocnumber += 1
-            newvocedit()
         }
 
         nextbutton.setOnClickListener {
@@ -305,7 +297,6 @@ class MainActivity : AppCompatActivity() {
             startscreen.visibility = View.VISIBLE
             mainedit.visibility = View.GONE
         }
-
 
         savebutton1.setOnClickListener {
             val name = titleInput.text.toString().trim()
@@ -326,8 +317,6 @@ class MainActivity : AppCompatActivity() {
         startaddbutton.setOnClickListener {
             startscreen.visibility = View.GONE
             mainadd.visibility = View.VISIBLE
-
-            newvoc(0)
         }
 
         cancelbutton1.setOnClickListener {
@@ -342,13 +331,8 @@ class MainActivity : AppCompatActivity() {
             newvoc(0)
         }
 
-        wrongbutton.setOnClickListener {
-            newvoc(0)
-        }
-
-        rightbutton.setOnClickListener {
-            newvoc(1)
-        }
+        wrongbutton.setOnClickListener { newvoc(0) }
+        rightbutton.setOnClickListener { newvoc(1) }
 
         exitbutton.setOnClickListener {
             maincard.visibility = View.GONE
