@@ -17,23 +17,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import java.util.Locale
+import android.content.Intent
+import android.net.Uri
+import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var ttsManager: TextToSpeechManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var currentvoceditcontent = ""
         var currentvoceditname = ""
-
         val preferences = getSharedPreferences("learnlanguage", Context.MODE_PRIVATE)
         val writer = preferences.edit()
         val dao = AppDatabase.get(this).entryDao()
         ttsManager = TextToSpeechManager(this)
-
         val recyclerView = findViewById<RecyclerView>(R.id.voclistrecyclerview)
         val voc = findViewById<TextView>(R.id.voc)
         val voctranslation = findViewById<TextView>(R.id.voctranslation)
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         val welcomestartlayout = findViewById<LinearLayout>(R.id.welcomestartlayout)
         val welcomestartbutton = findViewById<Button>(R.id.welcomestart)
         val welcomescreen = findViewById<LinearLayout>(R.id.welcome)
-
+        val openvoctralogo = findViewById<ImageView>(R.id.openvoctralogo)
         var vocnumber = 1
         val usedrandom = mutableSetOf<Int>()
         var currentId = 0
@@ -83,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         startscreen.visibility = View.VISIBLE
 
         if(isfirstrun) {
-            writer.putBoolean("isfirstrun", false)
+            writer.putBoolean("isfirstrun", false).apply()
             startscreen.visibility = View.GONE
             welcomestartlayout.visibility = View.VISIBLE
             welcomescreen.visibility = View.VISIBLE
@@ -205,6 +204,10 @@ class MainActivity : AppCompatActivity() {
                     adapter.submitList(liste)
                 }
             }
+        }
+
+        openvoctralogo.setOnClickListener {
+            openInBrowser("https://github.com/Joshi7479/openvoctra")
         }
 
         voclistbutton.setOnClickListener {
@@ -330,12 +333,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         startaddbutton.setOnClickListener {
-            startscreen.visibility = View.GONE
+            voclistlayout.visibility = View.GONE
             mainadd.visibility = View.VISIBLE
         }
 
         cancelbutton1.setOnClickListener {
-            startscreen.visibility = View.VISIBLE
+            voclistlayout.visibility = View.VISIBLE
             mainadd.visibility = View.GONE
         }
 
@@ -353,6 +356,7 @@ class MainActivity : AppCompatActivity() {
                 newvoc(0)
             }
         }
+
         rightbutton.setOnClickListener {
             if(showtranslation.visibility == View.VISIBLE) {
                 Toast.makeText(this, getString(R.string.pltranslate), Toast.LENGTH_SHORT).show()
@@ -370,5 +374,16 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         ttsManager.stopall()
+    }
+
+    fun Context.openInBrowser(url: String) {
+        val parsedUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            "http://$url"
+        } else {
+            url
+        }
+
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(parsedUrl))
+        startActivity(intent)
     }
 }

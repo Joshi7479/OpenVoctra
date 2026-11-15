@@ -4,14 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:paddingTop="30dp"
-    android:gravity="top"
+    android:gravity="center"
     android:backgroundTint="@color/app_background"
     android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fivenewlines"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,11 +16,12 @@
         android:gravity="center_horizontal"
         android:layout_height="wrap_content">
 
-        <Button
+        <ImageView
             android:layout_width="match_parent"
-            android:id="@+id/startadd"
             android:layout_height="wrap_content"
-            android:text="@string/startadd"/>
+            android:id="@+id/openvoctralogo"
+            android:src="@mipmap/ic_launcher_round"/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -36,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/starttraining"
+            android:backgroundTint="#0080FF"
             android:text="@string/starttraining"/>
 
         <TextView
@@ -46,6 +43,7 @@
         <Button
             android:layout_width="match_parent"
             android:id="@+id/startedit"
+            android:backgroundTint="#0080FF"
             android:layout_height="wrap_content"
             android:text="@string/startedit"/>
 
@@ -58,6 +56,7 @@
             android:layout_width="match_parent"
             android:id="@+id/voclist"
             android:layout_height="wrap_content"
+            android:backgroundTint="#0080FF"
             android:text="@string/voclist"/>
 
         <TextView
@@ -71,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|top"
             android:gravity="center"
+            android:backgroundTint="#0080FF"
             android:text="@string/settingsunicode" />
 
     </LinearLayout>
@@ -103,6 +103,7 @@
 
                 <EditText
                     android:layout_width="match_parent"
+                    android:backgroundTint="#0080FF"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:hint="@string/ownlanguage"
@@ -116,6 +117,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:gravity="center"
+                    android:backgroundTint="#0080FF"
                     android:layout_height="wrap_content"
                     android:hint="@string/learnlanguage"
                     android:id="@+id/voctranslationadd"/>
@@ -133,12 +135,14 @@
 
                     <Button
                         android:layout_width="150dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/cancel1"
                         android:text="@string/done"/>
 
                     <Button
                         android:layout_width="150dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/save1"
                         android:text="@string/save"/>
@@ -204,6 +208,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#0080FF"
                     android:text="@string/opentranslation"
                     android:id="@+id/showtranslation"/>
 
@@ -222,12 +227,14 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/right"
+                        android:backgroundTint="#0080FF"
                         android:text="@string/right"/>
 
                     <Button
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/wrong"
+                        android:backgroundTint="#0080FF"
                         android:text="@string/wrong"/>
 
                 </LinearLayout>
@@ -236,6 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/exit"
+                    android:backgroundTint="#0080FF"
                     android:text="@string/done"/>
 
             </LinearLayout>
@@ -266,6 +274,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/play"
+                    android:backgroundTint="#0080FF"
                     android:text="@string/playbutton"/>
 
                 <EditText
@@ -290,6 +299,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:gravity="center"
+                    android:backgroundTint="#0080FF"
                     android:layout_height="wrap_content"
                     android:id="@+id/vocnamedit" />
 
@@ -300,6 +310,7 @@
 
                 <EditText
                     android:layout_width="match_parent"
+                    android:backgroundTint="#0080FF"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:id="@+id/voctranslationedit"/>
@@ -317,12 +328,14 @@
 
                     <Button
                         android:layout_width="150dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/cancel2"
                         android:text="@string/done"/>
 
                     <Button
                         android:layout_width="150dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/save2"
                         android:text="@string/save"/>
@@ -337,18 +350,21 @@
 
                     <Button
                         android:layout_width="100dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/last"
                         android:text="@string/last"/>
 
                     <Button
                         android:layout_width="100dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/delete"
                         android:text="@string/delete"/>
 
                     <Button
                         android:layout_width="100dp"
+                        android:backgroundTint="#0080FF"
                         android:layout_height="wrap_content"
                         android:id="@+id/next"
                         android:text="@string/next"/>
@@ -368,6 +384,7 @@
 
         <Button
             android:layout_width="match_parent"
+            android:backgroundTint="#0080FF"
             android:layout_height="wrap_content"
             android:text="@string/lernsettingslearnl"
             android:id="@+id/startlanguagepicker"/>
@@ -387,6 +404,7 @@
 
         <Button
             android:layout_width="match_parent"
+            android:backgroundTint="#0080FF"
             android:layout_height="wrap_content"
             android:id="@+id/settingsdone"
             android:text="@string/done"/>
@@ -410,16 +428,23 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start|top"
+                android:backgroundTint="#0080FF"
                 android:text="@string/done"
                 android:id="@+id/leavevoclist"/>
 
             <Button
                 android:layout_width="wrap_content"
+                android:backgroundTint="#0080FF"
                 android:layout_height="wrap_content"
-                android:gravity="end|top"
                 android:text="@string/starttraining"
                 android:id="@+id/starttrainingfromvoclist"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/startadd"
+                android:backgroundTint="#0080FF"
+                android:layout_height="wrap_content"
+                android:text="+"/>
 
         </LinearLayout>
 
@@ -458,6 +483,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#0080FF"
             android:gravity="center"
             android:text="@string/welcome"/>
 
@@ -473,6 +499,7 @@
 
         <Button
             android:layout_width="wrap_content"
+            android:backgroundTint="#0080FF"
             android:layout_height="wrap_content"
             android:id="@+id/welcomestart"
             android:text="@string/start"/>
