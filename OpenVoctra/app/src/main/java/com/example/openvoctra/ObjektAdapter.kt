@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.Locale
 import android.content.Context
 import android.os.Handler
-import android.content.Intent
 import kotlinx.coroutines.launch
 import android.os.Looper
 import kotlinx.coroutines.CoroutineScope

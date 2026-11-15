@@ -29,4 +29,8 @@
     <string name="voclisthint">Hier ist die Vokabelliste, wo du alle Vokabeln lernen kannst.\n(Anklicken um im Editor zu öffnen, halten zum Löschen.)</string>
     <string name="playbutton">▶︎</string>
     <string name="test">Testbutton</string>
+    <string name="welcome">Willkommen bei OpenVoctra!\n\n\nDamit du schnell starten kannst, wird alles in den Menüs erklärt! Bitte lege die Sprache, die du lernen willst nur in den Einstellungen fest, damit die Vokabeln richtig vorgelesen werden können.\nFür weitere Informationen und andere meiner Projekte, besuche mich auf GitHub:\nhttps://github.com/Joshi7479/\n</string>
+    <string name="start">Starte jetzt!</string>
+    <string name="startscreenhint">Das hier ist der Startbildschirm/Hub. Von hier aus hast du Zugriff auf alle Aktivitäten.</string>
+    <string name="pltranslate">Bitte schaue dir erst die Übersetzung ein!</string>
 </resources>

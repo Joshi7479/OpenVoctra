@@ -16,17 +16,21 @@
     <string name="opentranslation">Show translation</string>
     <string name="settingsunicode">⚙</string>
     <string name="done">Done</string>
-    <string name="ownlanguage">A word in you`re first language</string>
+    <string name="ownlanguage">A word in your first language</string>
     <string name="learnlanguage">The translation (e.g. in German).</string>
     <string name="lernsettingsownl">Which language do you speak?</string>
-    <string name="lernsettingslearnl">Choose the language you wan´t to learn</string>
+    <string name="lernsettingslearnl">Choose the language you want´ to learn</string>
     <string name="bothfields">Please fill out both fields!</string>
     <string name="currentlanguage">The currently selected language code is: </string>
     <string name="nothingsaved">Nothing saved yet!</string>
     <string name="voclist">vocabulary-item-list</string>
     <string name="cancel">Cancel</string>
     <string name="chooselanguage">Choose the language</string>
-    <string name="voclisthint">This is the voclist, where you can learn all saved vocabulary-items.\n(Tap to open in editor, hold to delete)</string>
+    <string name="voclisthint">This is the vocabulary-item-list, where you can learn all saved vocabulary-items.\n(Tap to open in editor, hold to delete)</string>
     <string name="playbutton">▶︎</string>
     <string name="test">Testbutton</string>
+    <string name="welcome">Welcome to OpenVoctra!\n\n\nSo that you can start faster, everything is declared in the menus. Just set the language you are learning in the Settings for the text-to-speech-function.\nFor further information and other projects, visit me on gitHub:\nhttps://github.com/Joshi7479\n</string>
+    <string name="start">Start now!</string>
+    <string name="startscreenhint">This is the Startscreen/Hub. From here you can start the activities!</string>
+    <string name="pltranslate">Please have a look on the translation first!</string>
 </resources>

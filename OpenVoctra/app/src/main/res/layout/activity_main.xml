@@ -17,9 +17,10 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:id="@+id/startscreen"
-        android:visibility="gone"
+        android:visibility="visible"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content">
+
         <Button
             android:layout_width="match_parent"
             android:id="@+id/startadd"
@@ -443,6 +444,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/voclistrecyclerview"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcome"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/welcome"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomestartlayout"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/welcomestart"
+            android:text="@string/start"/>
 
     </LinearLayout>
 

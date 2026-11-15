@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         var currentvoceditcontent = ""
         var currentvoceditname = ""
-        var isfirstvoclistrun = true
 
         val preferences = getSharedPreferences("learnlanguage", Context.MODE_PRIVATE)
         val writer = preferences.edit()
@@ -71,14 +70,30 @@ class MainActivity : AppCompatActivity() {
         val voclistlayout = findViewById<LinearLayout>(R.id.voclistlayout)
         val starttrainingfromvoclist = findViewById<Button>(R.id.starttrainingfromvoclist)
         val voclistdone = findViewById<Button>(R.id.leavevoclist)
+        val welcomestartlayout = findViewById<LinearLayout>(R.id.welcomestartlayout)
+        val welcomestartbutton = findViewById<Button>(R.id.welcomestart)
+        val welcomescreen = findViewById<LinearLayout>(R.id.welcome)
 
         var vocnumber = 1
         val usedrandom = mutableSetOf<Int>()
         var currentId = 0
         var lastvoc = 0
+        val isfirstrun = preferences.getBoolean("isfirstrun", true)
 
         startscreen.visibility = View.VISIBLE
-        writer.putBoolean("isfirstvoclistrun", isfirstvoclistrun).apply()
+
+        if(isfirstrun) {
+            writer.putBoolean("isfirstrun", false)
+            startscreen.visibility = View.GONE
+            welcomestartlayout.visibility = View.VISIBLE
+            welcomescreen.visibility = View.VISIBLE
+            welcomestartbutton.setOnClickListener {
+                welcomescreen.visibility = View.GONE
+                startscreen.visibility = View.VISIBLE
+                Toast.makeText(this, getString(R.string.startscreenhint), Toast.LENGTH_LONG).show()
+                welcomestartbutton.visibility = View.GONE
+            }
+        }
 
         fun newvoc(right: Int) {
             voctranslation.visibility = View.GONE
@@ -87,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 val voccount = dao.getCount()
 
                 if (voccount == 0) {
-                    voc.text = "Nothing saved yet!"
+                    voc.text = getString(R.string.nothingsaved)
                     voctranslation.text = ""
                     return@launch
                 }
@@ -121,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 if (count == 0) {
                     vocnumber = 0
                     vocnumberedit.setText("")
-                    vocnameedit.setText("Nothing saved yet!")
+                    vocnameedit.setText(getString(R.string.nothingsaved))
                     voctranslationedit.setText("")
                     return@launch
                 }
@@ -331,12 +346,29 @@ class MainActivity : AppCompatActivity() {
             newvoc(0)
         }
 
-        wrongbutton.setOnClickListener { newvoc(0) }
-        rightbutton.setOnClickListener { newvoc(1) }
+        wrongbutton.setOnClickListener {
+            if(showtranslation.visibility == View.VISIBLE) {
+                Toast.makeText(this, getString(R.string.pltranslate), Toast.LENGTH_SHORT).show()
+            } else {
+                newvoc(0)
+            }
+        }
+        rightbutton.setOnClickListener {
+            if(showtranslation.visibility == View.VISIBLE) {
+                Toast.makeText(this, getString(R.string.pltranslate), Toast.LENGTH_SHORT).show()
+            } else {
+                newvoc(1)
+            }
+        }
 
         exitbutton.setOnClickListener {
             maincard.visibility = View.GONE
             startscreen.visibility = View.VISIBLE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ttsManager.stopall()
     }
 }
