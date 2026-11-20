@@ -11,4 +11,4 @@ This update is not an OS update but an google-play-services-update. This Updates
 
 But: If you use an program like Waydroid, you can use install it, if you don‘t install thise services. Same for Custom-Roms like Lineage OS or Graphene OS! Or you can do !9! steps in the Developer-Options including an 24 hour wait to unlock sideloading again (more informations on keepandroidopen.org).
 
-OpenVoctra made by Joshi7479
+OpenVoctra made by <a href=https://github.com/Joshi7479>Joshi7479</a>
